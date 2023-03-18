@@ -8,8 +8,33 @@ Note: both files are csv files.
 
 
 1. Create a schema based on the given dataset
+Create database Hive_1;
+Create Table AgentLoggingReport(
+SL NO Int,
+Agent String,
+Date Date,
+Login Time Timestamp,
+Logout Time Timestamp,
+Duration Timestamp
+)
+row format delimited 
+fields terminated by ',';
+
+Create Table AgentPerformance(
+SL NO Int,
+Agent Name String,
+Total Chats Int,
+Average Response Time Timestamp,
+Average Resolution Time Timestamp,
+Average Rating Double,
+Total Feedback Int
+)Row format delimited 
+fields terminated by ',';
 2. Dump the data inside the hdfs in the given schema location.
+load data input '/tmp/AgentLoggingReport.csv' into AgentLoggingReport
+load data input '/tmp/AgentPerformance.csv' into AgentPerformance
 3. List of all agents' names. 
+select distinct(Agent Name) from AgentPerformance;
 4. Find out agent average rating.
 5. Total working days for each agents 
 6. Total query that each agent have taken 
